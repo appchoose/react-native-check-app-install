@@ -1,5 +1,10 @@
-import { Linking, Platform } from 'react-native';
-import { APP_LIST } from './app-list';
+import {
+    Linking,
+    Platform
+} from 'react-native';
+import {
+    APP_LIST
+} from './app-list';
 import CheckPackageInstallation from './android';
 
 class AppInstalledChecker {
@@ -21,11 +26,10 @@ class AppInstalledChecker {
             Linking
                 .canOpenURL(proto + '://' + query || '')
                 .then((isInstalled) => {
-                    console.log('isInstalled', isInstalled);
+                    // console.log('isInstalled', isInstalled);
                     resolve(isInstalled);
                 })
                 .catch((err) => {
-                    console.log('erroer', err);
                     reject(err);
                 });
         });
@@ -33,8 +37,12 @@ class AppInstalledChecker {
 
     static isAppInstalled(key) {
         return Platform.select({
-            ios: () => { return this.isAppInstalledIOS(key); },
-            android: () => { return this.isAppInstalledAndroid(key); }
+            ios: () => {
+                return this.isAppInstalledIOS(key);
+            },
+            android: () => {
+                return this.isAppInstalledAndroid(key);
+            }
         })();
     }
 
